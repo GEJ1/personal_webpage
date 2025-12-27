@@ -39,6 +39,28 @@
       max-width: var(--max-width);
     }
 
+    /* Theme Toggle Button */
+    .theme-toggle {
+      font-size: 1.5rem;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+      background: var(--card-bg);
+      border: 15px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem;
+      border-radius: 50%;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+
     header {
       text-align: center;
       margin-bottom: 2.5rem;
@@ -548,6 +570,7 @@
   </style>
 </head>
 <body>
+   <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌓</button>
   <div class="page">
     <header>
       <img src="gus.jpg" alt="Photo of Gustavo Juantorena" class="profile-photo">
@@ -563,14 +586,6 @@
         <a href="http://liaa.dc.uba.ar/" target="_blank" rel="noopener noreferrer">Laboratory of Applied Artificial Intelligence</a>,
         working on computational psychiatry through high precision hand and eye movement characterization during neuropsychological tests.
       </p>
-
-      <div class="tags">
-        <span class="tag">Digital neuropsychology</span>
-        <span class="tag">Computational psychiatry</span>
-        <span class="tag">Eye tracking</span>
-        <span class="tag">Data science</span>
-        <span class="tag">Machine learning</span>
-      </div>
 
       <div class="lang-switch" aria-label="Language selector">
         <button class="lang-btn active" data-lang="en">
@@ -1089,6 +1104,14 @@
   </div>
 
   <script>
+
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+    });
     // Language switcher
     const buttons = document.querySelectorAll('.lang-btn');
     const sections = {
